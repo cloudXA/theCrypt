@@ -1,0 +1,51 @@
+//测试
+//使用构造函数构造函数
+//创建一个Place对象
+var library = new Place (
+    "the old library",
+    "you are in a library . dusty book line the walls"
+);
+//创建一个Player对象
+var player1 = new Player("Kandra", 50);
+//将Place对象分配给Player
+player1.place = library;
+player1.addItem("a rusty key");
+player1.addItem("The Sword of Doom");
+player1.showInfo();
+
+//测试Place构造函数
+var kitchen = new Place (
+    "the kitchen",
+    "you are in a kitchen ,There is a disturbing smell"
+);
+var library = new Place (
+    "the old library",
+    "you are in a library.dusty books line the walls"
+);
+var garden = new Place (
+    "the kitchen garden",
+    "you are in a cupiboard. It's surprisingly roomy"
+);
+var cupboard = new Place (
+    "the kitchen cupboard",
+    "you are in a cupboard, it is surprisingly"
+);
+
+//为每个地点添加物品
+kitchen.addItem("a piece of cheese");
+library.addItem("a rusty key");
+cupboard.addItem("a tin of spam");
+
+//为厨房添加出口
+kitchen.addExit("south", library);
+kitchen.addExit("west",garden);
+kitchen.addExit("east", cupboard);
+
+
+//添加通往厨房的窗口
+library.addExit("north",kitchen);
+garden.addExit("east",kitchen);
+cupboard.addExit("west",kitchen);
+
+//显示厨房信息
+kitchen.showInfo();
