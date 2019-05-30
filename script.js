@@ -203,9 +203,9 @@ var getGame = function () {
         kitchen.addExit("north",kitchen);
         //创建一个玩家（为局部变量），并初始化
         var player1 = new Player("kandra",50);
-
-
         player1.addItem("the sword of doom");
+       
+        //预先设置玩家的初始地址
         player1.setPlace(kitchen);
         //在控制台显示初始化信息
         render();
@@ -215,17 +215,31 @@ var getGame = function () {
         return {
             go: function (direction) {
                 var place = player1.getPlace();
+                //获得当前位置的情况下，调用该位置的getExit方法，利用指定方向检索目的地
                 var destination = place.getExit(direction);
-                player1.setPlace(destination);//设置place变量
-                render();
-                return "";
+                //检测目的地是否undefined,存在时设置新的位置
+                if (destination !== undefined) {
+                  //玩家找到目的地的情况下，更新玩家的位置
+                     player1.setPlace(destination);
+                     render();
+                     return "";  
+                } else {
+                    return " *** 该方向没有出口 ***";
+                };
+                
             },
             get: function () {
                 var place = player1.getPlace();
                 var item = place.getLastItem();
-                player1.addItem(item);
-                render();
-                return "";
+                //检测物品是否undefined,存在时添加物品到玩家
+                if (item !== undefined) {
+                    player1.addItem(item);
+                    render();
+                    return "";
+                } else {
+                    return " *** 没有可获得的物品 ***";
+                }
+                
             }
         
         };
