@@ -245,7 +245,7 @@ var getGame = function () {
         };
     };
     //调用getGame函数，返回接口对象，将其分配给game变量
-    var game = getGame();
+    // var game = getGame();
    
 
 

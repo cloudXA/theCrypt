@@ -1,5 +1,8 @@
 //定义玩家构造函数
-(function Player (name, health) {
+( function () {
+
+    var  Player = function (name, health) {
+
     var newLine = spacer.newLine();
     
     var items = [];
@@ -15,10 +18,11 @@
     };
     
     var getItemsInfo = function () {
-        var itemsString = "Items:" + "\n";
+        var itemsString = "Items:" + newLine;
         items.forEach(function (item,i) {
-            itemsString += " - " + item + "\n";
-        })
+            itemsString += " - " + item + newLine;
+        });
+        
         return itemsString;
     };
     //函数私有化，共内部函数使用
@@ -49,11 +53,13 @@
     this.showInfo = function(character) {
         console.log(getInfo(character));
     };
-
+  };
+    
     //确保有一个名为theCrypt的全局命名空间
     if(window.theCrypt === undefined) {
         window.theCrypt = {};
     }
     //将Player构造函数分配给theCrypt命名空间
     theCrypt.Player = Player;
+    
 }) ();
